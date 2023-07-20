@@ -1,9 +1,11 @@
-/* eslint-disable no-param-reassign */
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  webpack(config) {
-    config.experiments = { ...config.experiments, topLevelAwait: true };
-    return config;
+  images: {
+    domains: [
+      'googleusercontent.com',
+      'oaidalleapiprodscus.blob.core.windows.net',
+      'cdn.openai.com',
+    ],
   },
 };
 

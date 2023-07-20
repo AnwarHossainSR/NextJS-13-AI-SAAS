@@ -1,31 +1,34 @@
 import '@/styles/globals.css';
-
+import { ClerkProvider } from '@clerk/nextjs';
+import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
-import type { ChildrenProps } from '@/types';
+import { CrispProvider } from '@/components/crisp-provider';
+import { ModalProvider } from '@/components/modal-provider';
+import { ToasterProvider } from '@/components/toaster-provider';
 
-export const metadata = {
-  description:
-    'A highly opinionated and complete starter for Next.js projects ready to production. Includes Typescript, Styled Components, Prettier, ESLint, Husky, SEO, and more.',
-  keywords:
-    'next, starter, typescript, tailwind css, prettier, eslint, husky, seo',
-  title: 'Next Starter',
+const font = Inter({ subsets: ['latin'] });
+
+export const metadata: Metadata = {
+  title: 'Genius',
+  description: 'AI Platform',
 };
 
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'optional',
-});
-
-export default async function RootLayout({ children }: ChildrenProps) {
+export default async function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <html lang="en">
-      <body
-        className={`${inter.className} h-full flex flex-col justify-between`}
-      >
-        <section className="flex-1">{children}</section>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <CrispProvider />
+        <body className={font.className}>
+          <ToasterProvider />
+          <ModalProvider />
+          {children}
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
