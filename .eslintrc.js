@@ -83,13 +83,6 @@ module.exports = {
         unnamedComponents: 'arrow-function',
       },
     ],
-    'prettier/prettier': [
-      'error',
-      {
-        singleQuote: true,
-        parser: 'flow',
-      },
-    ],
   },
   settings: {
     // TypeScript needs this to resolve nextjs absolute imports
